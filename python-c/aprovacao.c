@@ -5,7 +5,7 @@ void ler_notas_praticas(float P[], int n) {
 
     for(int i = 0; i < n; i++) {
         scanf("%f %f %f", &notap_1, &notap_2, &notap_3);
-        P[i] = (notap_1 + notap_2 + notap_3) / 3;
+        P[i] = (notap_1 + notap_2 + notap_3) / 3.0;
     }
 }
 
@@ -13,7 +13,7 @@ void ler_notas_teoricas(float T[], int n) {
     float notat_1, notat_2;
     for (int i = 0; i < n; i++) {
         scanf("%f %f", &notat_1, &notat_2);
-        T[i] = (notat_1 + notat_2) / 2;
+        T[i] = (notat_1 + notat_2) / 2.0;
     }
 
 }
@@ -38,15 +38,15 @@ void multiplicar_fator(float vetor[], int n, float fator) {
 float calcular_media_vetor(float vetor[], int n) {
     float media = 0;
     for (int i = 0; i < n; i++) {
-        media += vetor[i] / n;
+        media += vetor[i];
     }
-    return media;
+    return media / n;
 }
 
 void calcular_media_final(float P[], float T[], float F[], int n) {
     for (int i = 0; i < n; i++) {
         float media;
-        media = (calcular_media_vetor(P, n) + calcular_media_vetor(T, n)) / 2;
+        media = (P[i] + T[i]) / 2.0;
         F[i] = media;
     }
 }
@@ -59,6 +59,8 @@ void imprimir_notas(float F[], int n) {
 
 int main() {
     int n;
+    scanf("%d", &n);
+
     float P[n];
     float T[n];
     float F[n];
@@ -66,8 +68,6 @@ int main() {
     float maximo_p;
     float media_p;
     float media_t;
-
-    scanf("%d", &n);
 
     ler_notas_praticas(P, n);
     ler_notas_teoricas(T, n);
@@ -86,8 +86,10 @@ int main() {
     media_p = calcular_media_vetor(P, n);
     media_t = calcular_media_vetor(T, n);
 
-    printf("Max P: %.1f", maximo_p);
-    printf("Max T: %.1f", maximo_t);
-    printf("Media P: %.1f", media_p);
-    printf("Media T: %.1f", media_t);
+    printf("Max P: %.1f\n", maximo_p);
+    printf("Max T: %.1f\n", maximo_t);
+    printf("Media P: %.1f\n", media_p);
+    printf("Media T: %.1f\n", media_t);
+
+    return 0;
 }
